@@ -1,0 +1,330 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ff69b4;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    animation: twinkle 10s linear infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes twinkle {
+    0% {
+        background-position: 0 0, 40px 60px, 130px 270px;
+    }
+    100% {
+        background-position: 550px 550px, 390px 410px, 380px 520px;
+    }
+}
+
+.container {
+    text-align: center;
+}
+
+.chat-container {
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 192, 203, 0.25);
+    backdrop-filter: blur(15px);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.4),
+                inset 0 0 15px rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px 12px 0 0;
+    margin: 10px 10px 0 10px;
+    box-shadow: inset 0 0 10px rgba(255, 105, 180, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message {
+    max-width: 70%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    margin: 8px 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+.user {
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.9), rgba(255, 20, 147, 0.9));
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    align-self: center;
+}
+
+.ai {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 192, 203, 0.95));
+    color: #333;
+    border: 2px solid rgba(255, 105, 180, 0.4);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    align-self: center;
+}
+
+.chat-box {
+    padding: 15px 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    gap: 12px;
+    box-shadow: 0 -5px 15px rgba(255, 105, 180, 0.1);
+    margin-top: auto;
+}
+
+.chat-box input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 20px;
+    border: 2px solid rgba(255, 105, 180, 0.4);
+    border-radius: 25px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+}
+
+.chat-box input[type="text"]:focus {
+    outline: none;
+    border-color: rgba(255, 105, 180, 0.8);
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+    background: white;
+}
+
+.chat-box input[type="text"]::placeholder {
+    color: rgba(255, 105, 180, 0.6);
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.9), rgba(255, 20, 147, 0.9));
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(135deg, rgba(255, 20, 147, 0.9), rgba(255, 105, 180, 0.9));
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.goat {
+    display: none;
+    width: 100px;
+    height: 100px;
+    position: static;
+    margin: 20px auto;
+    object-fit: contain;
+}
+
+/* Nouvelle classe pour l'animation */
+.goat.spinning {
+    display: block;
+    animation: spin 2s linear infinite;
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Nouvel overlay pour l'effet grisé */
+.overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    border-radius: 10px;
+    pointer-events: none; /* Permet de cliquer à travers */
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Ajout des chèvres en arrière-plan */
+.background-goat {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    opacity: 0.4;  /* Augmentation de l'opacité */
+    z-index: -1;
+    filter: brightness(0) invert(1); /* Rend les chèvres blanches */
+    animation: glow 2s ease-in-out infinite alternate; /* Effet brillant */
+}
+
+@keyframes glow {
+    from {
+        filter: brightness(0) invert(1) drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
+    }
+    to {
+        filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+    }
+}
+
+/* Animation pour chaque chèvre avec des points de départ aléatoires */
+.goat1 { animation: moveGoat1 20s linear infinite; top: 10%; animation-delay: -5s; }
+.goat2 { animation: moveGoat2 25s linear infinite; top: 30%; animation-delay: -12s; }
+.goat3 { animation: moveGoat3 15s linear infinite; top: 50%; animation-delay: -3s; }
+.goat4 { animation: moveGoat4 30s linear infinite; top: 70%; animation-delay: -18s; }
+.goat5 { animation: moveGoat5 22s linear infinite; top: 90%; animation-delay: -7s; }
+.goat6 { animation: moveGoat1 18s linear infinite; top: 20%; animation-delay: -9s; }
+.goat7 { animation: moveGoat3 28s linear infinite; top: 40%; animation-delay: -15s; }
+.goat8 { animation: moveGoat5 23s linear infinite; top: 60%; animation-delay: -4s; }
+
+/* Différentes animations de mouvement */
+@keyframes moveGoat1 {
+    from { left: -50px; transform: scaleX(1); }
+    50% { left: calc(100% + 50px); transform: scaleX(1); }
+    50.1% { left: calc(100% + 50px); transform: scaleX(-1); }
+    to { left: -50px; transform: scaleX(-1); }
+}
+
+@keyframes moveGoat2 {
+    from { right: -50px; transform: scaleX(-1); }
+    50% { right: calc(100% + 50px); transform: scaleX(-1); }
+    50.1% { right: calc(100% + 50px); transform: scaleX(1); }
+    to { right: -50px; transform: scaleX(1); }
+}
+
+@keyframes moveGoat3 {
+    from { left: -50px; transform: scaleX(1) rotate(10deg); }
+    50% { left: calc(100% + 50px); transform: scaleX(1) rotate(-10deg); }
+    50.1% { left: calc(100% + 50px); transform: scaleX(-1) rotate(10deg); }
+    to { left: -50px; transform: scaleX(-1) rotate(-10deg); }
+}
+
+@keyframes moveGoat4 {
+    0% { left: 0; top: 0; }
+    25% { left: 100%; top: 100%; }
+    50% { left: 0; top: 100%; }
+    75% { left: 100%; top: 0; }
+    100% { left: 0; top: 0; }
+}
+
+@keyframes moveGoat5 {
+    from { left: -50px; transform: scaleX(1) rotate(-5deg); }
+    50% { left: calc(100% + 50px); transform: scaleX(1) rotate(5deg); }
+    50.1% { left: calc(100% + 50px); transform: scaleX(-1) rotate(-5deg); }
+    to { left: -50px; transform: scaleX(-1) rotate(5deg); }
+}
+
+h1 {
+    color: white;
+    animation: bounce 1s ease;
+    font-size: 3.5rem;  /* Taille augmentée */
+    font-weight: bold;  /* Texte en gras */
+    margin-bottom: 30px;  /* Espace sous le titre */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                 0 0 20px rgba(255, 105, 180, 0.5),
+                 0 0 30px rgba(255, 20, 147, 0.3);
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(30px);
+        opacity: 0.8;
+    }
+    80% {
+        transform: translateY(-10px);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Ajout des nouvelles chèvres avec des positions et délais différents */
+.goat9 { animation: moveGoat1 19s linear infinite; top: 15%; animation-delay: -2s; }
+.goat10 { animation: moveGoat3 24s linear infinite; top: 45%; animation-delay: -8s; }
+.goat11 { animation: moveGoat5 21s linear infinite; top: 75%; animation-delay: -13s; }
+
+/* Les animations existantes restent les mêmes, 
+   car moveGoat1, moveGoat3 et moveGoat5 commencent toutes de la gauche */
+
+/* Style de la scrollbar */
+.messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: rgba(255, 105, 180, 0.1);
+    border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 105, 180, 0.8);
+    border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 20, 147, 0.8);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.social-icon {
+    transition: transform 0.3s ease;
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+}
+
+.social-icon:hover {
+    transform: scale(1.1);  /* Effet de grossissement au survol */
+    filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
+}
+
+.social-icon img {
+    width: 40px;
+    height: 40px;
+}
